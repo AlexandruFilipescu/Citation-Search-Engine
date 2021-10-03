@@ -1,3 +1,0 @@
-# TO DO
-- Add scgbib test for trailing letter in label
-- check no curly braces around month name
