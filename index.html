@@ -26,47 +26,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- include source files here... -->
-    <script type="text/javascript" src="./Parser.js"></script>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-        //$("#textarea").load('scg.bib');
-        
-    });
-
-    var bibTexContent = null;
-    var bibTexAsJson = null;
-
-    var getBibtexAsTring = $.get('scg.bib', function(requestedData){
-        console.log("Getting the bibtex file as a string");
-        window.bibTexContent = requestedData;
-        console.log("Done");
-        
-    }).done( function(){
-        console.log("Converting the string to a JSON file");
-        window.bibTexAsJson = BibtexParser(bibTexContent);
-        console.log("Conversion done");
-        console.log(bibTexAsJson);
-        
-    });
-    
-    // var entries = BibtexParser(`
-
-    // @techreport{ACCOR02a,
-	// Author = {{ACCORD}},
-	// Institution = {{ACCORD}},
-	// Keywords = {damiencbib adl},
-	// Month = jun,
-	// Title = {{\'E}tat de l'art sur les Langages de Description d'Architecture ({ADLs})},
-	// Url = {http://projects.infres.enst.fr/accord/},
-	// Year = {2002},
-	// Bdsk-Url-1 = {http://projects.infres.enst.fr/accord/}}
-
-    // `);
-    //     console.log("Object is of type: " + typeof entries);
-    //     console.log(entries);
-
-    </script>
+    <script>
+  
+      // API for get requests
+      let fetchRes = fetch("./output.json");
+      fetchRes.then(res =>res.json())
+      .then(d => {console.log(d)})
+  </script>
 
   </body>
 </html>
