@@ -3,7 +3,22 @@ const bibtexParse = require('bibtex-parse');
 const hostname = '127.0.0.1';
 const port = 3000;
 
+var startTime, endTime;
 
+function start() {
+  startTime = new Date();
+};
+
+function end() {
+  endTime = new Date();
+  var timeDiff = endTime - startTime; //in ms
+  // strip the ms
+
+
+  // get seconds 
+  var seconds = Math.round(timeDiff);
+  console.log(seconds + " milliseconds");
+}
 
 function startParsing(fileName)
 {
@@ -12,7 +27,7 @@ function startParsing(fileName)
     var json_result = bibtexParse.entries(bibtex);
     
     var json_content = JSON.stringify(json_result);
-    fs.writeFile("output.json", json_content, 'utf-8', function (err) {
+    fs.writeFile("BrokenTests.json", json_content, 'utf-8', function (err) {
         if (err) {
             console.log("An error occured while writing JSON Object to File.");
             return console.log(err);
@@ -31,27 +46,9 @@ const server = http.createServer((req, res) =>{
     
 })
 
-server.listen(port, hostname, () => 
-{
+server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
-
-    startParsing('scg.bib');
-
+    //start();
+    startParsing('./BrokenFileTests/ScgMissingBrakets.bib');
+    //end();
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
