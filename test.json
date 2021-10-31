@@ -1,0 +1,29 @@
+[
+    {
+        "key": "ACCOR02a",
+        "type": "techreport",
+        "AUTHOR": "ACCORD",
+        "INSTITUTION": "ACCORD",
+        "KEYWORDS": "damiencbib adl",
+        "MONTH": "June",
+        "TITLE": "'Etat de l'art sur les Langages de Description d'Architecture (ADLs)",
+        "URL": "http://projects.infres.enst.fr/accord/",
+        "YEAR": "2002",
+        "BDSK-URL-1": "http://projects.infres.enst.fr/accord/"
+    },
+    {
+        "key": "ACM94b",
+        "type": "article",
+        "AUTHOR": "ACM",
+        "INSTITUTION": "ACM",
+        "JOURNAL": "Communications of the ACM",
+        "KEYWORDS": "scglib",
+        "MONTH": "May",
+        "NUMBER": "5",
+        "TITLE": "Reverse Engineering",
+        "VOLUME": "37",
+        "YEAR": "1994"
+    }
+   
+
+]
