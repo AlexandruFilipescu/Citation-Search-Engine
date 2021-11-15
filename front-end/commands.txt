@@ -1,0 +1,22 @@
+mongosh "mongodb+srv://cluster0.kczpr.mongodb.net/bibtexDB" --username root
+
+
+db.entries.find({
+    $text: {
+        $search: "Oscar"
+    }
+})
+
+db.entries.find({$text:{$search:"Pascal"}}).count()
+db.entries.find({$text:{$search:"Pascal"}}).pretty()
+
+
+
+
+
+
+
+
+
+
+
