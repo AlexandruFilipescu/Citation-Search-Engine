@@ -40,15 +40,44 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="{{key}}random">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}">
-                        {{#if (equals type "article")}}  {{AUTHOR}} {{TITLE}} {{JOURNAL}} {{VOLUME}}({{NUMBER}})  {{MONTH}} {{YEAR}} {{PAGES}}  {{/if}}
-                        {{#if (equals type "book")}}  {{addComma AUTHOR}} {{addComma EDITOR}} {{addComma BOOKTITLE}} {{addComma SERIES}} {{addComma VOLUME}} {{addComma PAGES}} {{addComma ADDRESS}} {{addComma MONTH}} {{/if}}
+
+
+                        {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL (join '' VOLUME '(' NUMBER ')') (join '' MONTH ' ' YEAR) PAGES NOTE }} {{/if}}
+
+                        {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR TITLE (join '' SERIES  '(' VOLUME ')') PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                        {{#if (equals type "booklet")}} {{joinToEnd ', ' AUTHOR TITLE ADDRESS NOTE  }} {{/if}}
+
+                        {{#if (equals type "conference")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR (join '' SERIES  '(' VOLUME ')') NUMBER PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                        {{#if (equals type "inbook")}} {{joinToEnd ', ' AUTHOR EDITOR TITLE BOOKTITLE PAGES PUBLISHER (join '' SERIES  '(' VOLUME ')')  ADDRESS NOTE }} {{/if}}
+
+                        {{#if (equals type "incollection")}} {{joinToEnd ', ' AUTHOR EDITOR TITLE BOOKTITLE (join '' SERIES  '(' VOLUME ')')  PAGES PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                        {{#if (equals type "inproceedings")}} {{joinToEnd ', ' AUTHOR EDITOR TITLE BOOKTITLE (join '' SERIES  '(' VOLUME ')')  PAGES ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                        {{#if (equals type "manual")}} {{joinToEnd ', ' BOOKTITLE AUTHOR ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
+
+                        {{#if (equals type "mastersthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE   }} {{/if}}
+
+                        {{#if (equals type "misc")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                        {{#if (equals type "phdthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE   }} {{/if}}
+
+                        {{#if (equals type "proceedings")}} {{joinToEnd ', ' EDITOR TITLE (join '' SERIES  '(' VOLUME ')') PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
+
+                        {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' TYPE ' ' NUMBER) INSTITUTION  ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
+
+                        {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
                        
                       </button>
                     </h2>
 
                     <div id="{{key}}" class="accordion-collapse collapse" aria-labelledby="{{key}}random">
                       <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        
+                       {{ABSTRACT}} 
+                     
                       </div>
                     </div>
 
@@ -128,20 +157,29 @@
         
         let renderedItem = renderItem({items: objectArray});
         $('#accordionExample').append(renderedItem);
-        //console.log(rendered)
+        
 
       }
 
 
       Handlebars.registerHelper('equals', (a,b) => a == b);
-      
-      Handlebars.registerHelper('addComma', function(str){
-      return str === undefined ? '' : `${str}, `;
+
+      Handlebars.registerHelper('joinToEnd', function(delim, ...args){
+        args.pop();
+        var args =  
+        args.filter(arg => arg !== undefined)
+        .join(delim);
+        args += '. ';
+        return args;
       });
 
-      Handlebars.registerHelper('addDot', function(str){
-          return str === undefined ? '' : `${str}. `;
-      });
+      Handlebars.registerHelper('join', function(delim, ...args){
+        args.pop();
+        return args
+        .filter(arg => arg !== undefined)
+        .join(delim);
+      })
+
 
      
     </script>

@@ -5,31 +5,44 @@
 %BibTeXFields = (
     article       => [author, title, journal, volume, number, "month + year",
 		      pages, note],
+
     book          => [author, editor, "booktitle + edition", publisher,
 		      volume, series, address, "month + year", note],
+
     booklet       => [title, author, howpublished, address, "month + year",
 		      note],
+
     conference    => [author, title, booktitle, editor, series, volume,
 		      number, organization, publisher, address,
 		      "month + year", pages, note],
+
     inbook        => [author, editor, booktitle, chapter, pages, publisher,
 		      "month + year", volume, series, address, edition, note],
+
     incollection  => [author, title, booktitle, editor, chapter, pages, 
 		      publisher, address, "month + year", note],
+
     inproceedings => [author, title, booktitle, editor, series, volume,
 		      number, organization, publisher, address,
 		      "month + year", pages, note],
+
     manual        => [booktitle, author, organization, publisher, address,
 		      "month + year", note],
+
     mastersthesis => [author, title, "*Masters thesis*", school,
 		      address, "month + year", note],
+
     misc          => [author, title, howpublished, "month + year", note],
+
     phdthesis     => [author, title, "*Ph.D. thesis*", school, address,
 		      "month + year", note],
+
     proceedings   => [booktitle, editor, publisher, organization, address,
 		      "month + year", note],
+
     techreport    => [author, title, "*Technical Report*", number,
 		      institution, "month + year", type, address, note],
+
     unpublished   => [author, title, "month + year", note],
 );
 
