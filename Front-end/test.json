@@ -1,8 +1,22 @@
 [
     {
+        "key": "Abra91b",
+        "type": "book",
+        "ADDRESS": "Brighton, UK",
+        "EDITOR": "S. Abramsky and T.S.E. Mailbaum",
+        "ISBN": "3-540-53981-6",
+        "KEYWORDS": "olit tapsoft91 scglib",
+        "MONTH": "April",
+        "PUBLISHER": "Springer-Verlag Pascal",
+        "SERIES": "LNCS",
+        "TITLE": "Proceedings TAPSOFT'91: Volume 2",
+        "VOLUME": "494",
+        "YEAR": "1991"
+    },
+    {
         "key": "ACCOR02a",
         "type": "techreport",
-        "AUTHOR": "ACCORD",
+        "AUTHOR": "Pascal",
         "INSTITUTION": "ACCORD",
         "KEYWORDS": "damiencbib adl",
         "MONTH": "June",
@@ -14,7 +28,7 @@
     {
         "key": "ACM94b",
         "type": "article",
-        "AUTHOR": "ACM",
+        "AUTHOR": "Pascal",
         "INSTITUTION": "ACM",
         "JOURNAL": "Communications of the ACM",
         "KEYWORDS": "scglib",
@@ -27,7 +41,7 @@
     {
         "key": "Andr92b",
         "type": "inproceedings",
-        "AUTHOR": "Pascal Andr'e and Jean-Claude Royer",
+        "AUTHOR": "Pascal",
         "BOOKTITLE": "Proceedings OOPSLA '92, ACM SIGPLAN Notices",
         "KEYWORDS": "olit oopsla92",
         "MONTH": "October",

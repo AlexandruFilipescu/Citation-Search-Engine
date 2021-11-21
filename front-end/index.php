@@ -32,11 +32,33 @@
       <div class="row">
         <div class="col">
           <div class="mt-5">
-            <ol class="list-group list-group-numbered" id="list">
-              <template id="profile-template">
 
+          <div class="accordion" id="accordionExample">
+
+              <template id="item-template">
+               {{#each items}}
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="{{key}}random">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}">
+                        {{#if (equals type "article")}}  {{AUTHOR}} {{TITLE}} {{JOURNAL}} {{VOLUME}}({{NUMBER}})  {{MONTH}} {{YEAR}} {{PAGES}}  {{/if}}
+                        {{#if (equals type "book")}}  {{addComma AUTHOR}} {{addComma EDITOR}} {{addComma BOOKTITLE}} {{addComma SERIES}} {{addComma VOLUME}} {{addComma PAGES}} {{addComma ADDRESS}} {{addComma MONTH}} {{/if}}
+                       
+                      </button>
+                    </h2>
+
+                    <div id="{{key}}" class="accordion-collapse collapse" aria-labelledby="{{key}}random">
+                      <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+
+                  </div>
+                {{/each}}
               </template>
-            </ol>
+
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -58,6 +80,8 @@
       .then(response => response.json())
       .then(data => {definitiveObjectArray = data; search();})
 
+      let itemTemplateString = document.getElementById('item-template').innerHTML;
+      let renderItem = Handlebars.compile(itemTemplateString);
 
       function filterIt(searchTags)
       {   
@@ -80,52 +104,50 @@
          {
            $queryContent = $_GET['query'];
          } else {
-          $queryContent = '';
+          $queryContent = 'Pascal';
          }
       ?>
 
-      function beginSetup(){
-  
-        list= document.getElementById('list');
-        list.textContent = '';
-        textString =  "<?php echo $queryContent; ?>";  //document.getElementById('searchForm').value;
+
+      function search()
+      {
+        beginSetup();
+      }
+
+
+
+      function beginSetup()
+      {
+        accordionItems= document.getElementById('accordionExample');
+        //accordionItems.textContent = '';
+        textString =  "<?php echo $queryContent; ?>";  
+        //document.getElementById('searchForm').value;
         textArray = textString.split(' ');
         objectArray = definitiveObjectArray;
-        
         objectArray = filterIt(textArray);
+        
+        let renderedItem = renderItem({items: objectArray});
+        $('#accordionExample').append(renderedItem);
+        //console.log(rendered)
+
       }
 
-      function search(){
 
-        beginSetup();
-        objectArray.forEach( item =>
-        {             
-            var html = '<li class="list-group-item">'
-                      + '<b>Key: </b> {{key}}'  
-                      + '<b>Type: </b> {{type}}'
-                      + '<b>Abstract: </b> {{ABSTRACT}}'
-                      + '</li>';
-           // $('#list').append(Mustache.render(html, item));
-        });
-
+      Handlebars.registerHelper('equals', (a,b) => a == b);
       
-      }
+      Handlebars.registerHelper('addComma', function(str){
+      return str === undefined ? '' : `${str}, `;
+      });
 
-
-
-
+      Handlebars.registerHelper('addDot', function(str){
+          return str === undefined ? '' : `${str}. `;
+      });
 
      
     </script>
   </body>
 </html>
 
-<?php
- function pre_r($array){
-     echo '<pre>';
-     print_r($array);
-     echo '</pre>';
- }
-?>
+
 
 
