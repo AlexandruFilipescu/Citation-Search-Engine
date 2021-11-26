@@ -30,8 +30,8 @@ function startParsing(fileName)
 {
     const bibtex = fs.readFileSync(fileName, 'utf8');
     var json_result = bibtexParse.entries(bibtex, {number:"string"});
-    
-    var json_content = JSON.stringify(json_result);
+    var json_content = JSON.stringify(json_result, null, '\t');
+
     fs.writeFile("./output.json", json_content, 'utf-8', function (err) {
         if (err) {
             console.log("An error occured while writing JSON Object to File.");
@@ -39,8 +39,6 @@ function startParsing(fileName)
         } else {
           console.log("JSON file has been saved.");
         }
-
-       
     });
 
    
