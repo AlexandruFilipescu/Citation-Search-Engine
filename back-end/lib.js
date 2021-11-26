@@ -3,6 +3,7 @@ const bibtexParse = require('bibtex-parse');
 var jsonPath = require('jsonpath');
 const jsonfile = require('jsonfile');
 var toRegex = require('to-regex');
+const fs = require('fs');
 
 
 /* istanbul ignore next */
@@ -27,7 +28,6 @@ function end()
 /* istanbul ignore next */
 function startParsing(fileName)
 {
-    const fs = require('fs');
     const bibtex = fs.readFileSync(fileName, 'utf8');
     var json_result = bibtexParse.entries(bibtex, {number:"string"});
     
@@ -39,8 +39,11 @@ function startParsing(fileName)
         } else {
           console.log("JSON file has been saved.");
         }
+
+       
     });
 
+   
 }
 
 function filterIt(searchTags)
