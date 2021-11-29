@@ -11,7 +11,9 @@
         "NUMBER": "5",
         "TITLE": "Reverse Engineering",
         "VOLUME": "37",
-        "YEAR": "1994"
+        "YEAR": "1994",
+        "URL": "http://scg.unibe.ch/archive/papers/Deme97zWCRE.pdf",
+        "BDSK-URL-1": "http://scg.unibe.ch/archive/papers/Ache01bPASCL.pdf"
     },
     {
         "key": "Abra91b",
@@ -25,7 +27,8 @@
         "SERIES": "LNCS",
         "TITLE": "Proceedings TAPSOFT'91: Volume 2",
         "VOLUME": "494",
-        "YEAR": "1991"
+        "YEAR": "1991",
+        "BDSK-URL-1": "http://scg.unibe.ch/archive/papers/Ache01bPASCL.pdf"
     },
     {
         "key": "Duca00z",
