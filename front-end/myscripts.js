@@ -9,6 +9,7 @@
       let itemTemplateString = document.getElementById('item-template').innerHTML;
       let renderItem = Handlebars.compile(itemTemplateString);
 
+      
 
 
       function filterIt(searchTags)
@@ -22,25 +23,44 @@
 
       function search()
       {
-        beginSetup();
-      }
-
-      function getQueryString(){
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        return urlParams.get('query');
-      }
-
-      function beginSetup()
-      {
-        accordionItems= document.getElementById('accordionExample');
-        textString =  getQueryString();  
+        textString =  getQueryValues();  
         textArray = textString.split(' ');
+
         objectArray = definitiveObjectArray;
         objectArray = filterIt(textArray);
-        
+
+        $('#accordionExample').empty();
         let renderedItem = renderItem({items: objectArray});
         $('#accordionExample').append(renderedItem);
+      }
+
+      function getQueryValues()
+      {   const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          if(urlParams.has('query'))
+          {
+            console.log('Plain text from query is: ' + urlParams.get('query'));
+            return urlParams.get('query');
+          } else{
+            return 'Empty String';
+          }
+      }
+
+      function modifyUrl()
+      {
+          var inputValues = $('#searchForm').val();
+          if(inputValues)
+          {
+            let params = new URLSearchParams();
+            params.set('query', inputValues);
+      
+            console.log('parameters to string: ' + params.toString());
+      
+            window.history.pushState('', "New page Title",'?' + params.toString());
+           
+          } else{
+            console.log('Empty values');
+          }
       }
 
            
@@ -55,6 +75,17 @@
             window.open(href);
           }
         })
+
+        $('#form').submit(function(event)
+        {
+          event.preventDefault();
+          modifyUrl();
+          search();
+      
+        });
+
+
+
       });
 
 

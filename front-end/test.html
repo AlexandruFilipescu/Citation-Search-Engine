@@ -18,9 +18,9 @@
       <div class="row mt-4">
 
         <div class="col">
-          <form action="" method="GET" class="d-flex" >
+          <form id="form" action="" method="GET" class="d-flex" >
 
-            <input id="searchForm"   type="text" name="query"
+            <input id="searchForm"   type="text" name="input_query"
             placeholder="Search for keywords" class="form-control me-2" >
 
             <input  id="searchBtn" class="btn btn-outline-primary"
@@ -46,11 +46,49 @@
 
 <script>
 
-const queryString = window.location.search;
 
-const urlParams = new URLSearchParams(queryString)
-const searchedValues = urlParams.get('query');
-console.log('Searched values: ' + searchedValues);
+  
+
+  function isEmptyUrlQuery()
+  {   const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if(urlParams.has('query'))
+      {
+        return false;
+      } else{
+        return true;
+      }
+  }
+
+  console.log('Is URL empty: ' + isEmptyUrlQuery());
+ 
+
+  $('#form').submit(function(event){
+    event.preventDefault();
+
+    var inputValues = $('#searchForm').val();
+
+    if(inputValues)
+    {
+      let params = new URLSearchParams();
+      params.set('query', inputValues);
+
+      console.log('parameters to string: ' + params.toString());
+
+      window.history.pushState('', "New page Title",'?' + params.toString());
+
+    } else{
+      console.log('Empty values');
+    }
+
+
+  });
+
+
+
+// const urlParams = new URLSearchParams(queryString)
+// const searchedValues = urlParams.get('input_query');
+// console.log('Searched values: ' + searchedValues);
 
 
 
