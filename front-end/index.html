@@ -26,63 +26,101 @@
             
           </form>
         </div>
+        
+      <div class="row mt-4">
+        <div class="col-4">
+          <div id="resultsDiv" class="alert alert-success" role="alert">
+            <span id="resultsText"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-4">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect01">Group by:</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option value="Author" selected>Author</option>
+              <option value="Year">Year</option>
+              <option value="Category">Category</option>
+              <option value="CategoryYear">CategoryYear</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="mt-5">
 
-          <div class="accordion" id="accordionExample">
+         
+
+          <div class="accordion" id="accordion">
               <template id="item-template">
+
                {{~#each items}}
+
+                  {{#if (arrayCompare YEAR 'uniqueOrdYears') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{YEAR}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
+                  {{#if (arrayCompare type 'uniqueCatYears') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{type}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
+                  {{#if (arrayCompare type 'uniqueOrdCateg') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{type}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
                   <div class="accordion-item">
+                
                     <h2 class="accordion-header" id="{{key}}random">
                     
                     <button class="{{#if ABSTRACT}}accordion-button {{else}} my-accordion-button {{/if}}"  type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}"> 
                           <div>
                                 
-                            {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}
+                           
 
-                            {{/if}} 
+                            {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}} 
                             
-                            {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' BOOKTITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} 
-                            {{/if}}
+                            {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' BOOKTITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
 
-                            {{#if (equals type "booklet")}} {{joinToEnd ', ' TITLE AUTHOR HOWPUBLISHED  ADDRESS  (join '' MONTH ' ' YEAR) NOTE}}
-                            {{/if}}
+                            {{#if (equals type "booklet")}} {{joinToEnd ', ' TITLE AUTHOR HOWPUBLISHED  ADDRESS  (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
 
-                            {{#if (equals type "conference")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES  VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}
-                            {{/if}}
+                            {{#if (equals type "conference")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES  VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
 
-                            {{#if (equals type "inbook")}} {{joinToEnd ', ' AUTHOR EDITOR BOOKTITLE CHAPTER PAGES PUBLISHER (join '' MONTH ' ' YEAR) VOLUME SERIES ADDRESS EDITION NOTE }}
-                            {{/if}}
+                            {{#if (equals type "inbook")}} {{joinToEnd ', ' AUTHOR EDITOR BOOKTITLE CHAPTER PAGES PUBLISHER (join '' MONTH ' ' YEAR) VOLUME SERIES ADDRESS EDITION NOTE }}{{/if}}
 
-                            {{#if (equals type "incollection")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR CHAPTER PAGES PUBLISHER ADDRESS  (join '' MONTH ' ' YEAR)  NOTE }}
-                            {{/if}}
+                            {{#if (equals type "incollection")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR CHAPTER PAGES PUBLISHER ADDRESS  (join '' MONTH ' ' YEAR)  NOTE }}{{/if}}
 
-                            {{#if (equals type "inproceedings")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}
-                            {{/if}}
+                            {{#if (equals type "inproceedings")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
 
-                            {{#if (equals type "manual")}} {{joinToEnd ', ' BOOKTITLE AUTHOR ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} 
-                            {{/if}}
+                            {{#if (equals type "manual")}} {{joinToEnd ', ' BOOKTITLE AUTHOR ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
 
-                            {{#if (equals type "mastersthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE}}
-                            {{/if}}
+                            {{#if (equals type "mastersthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
 
-                            {{#if (equals type "misc")}} {{joinToEnd ', ' AUTHOR TITLE HOWPUBLISHED (join '' MONTH ' ' YEAR) NOTE }}
-                            {{/if}}
+                            {{#if (equals type "misc")}} {{joinToEnd ', ' AUTHOR TITLE HOWPUBLISHED (join '' MONTH ' ' YEAR) NOTE }}{{/if}}
 
-                            {{#if (equals type "phdthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE }} 
-                            {{/if}}
+                            {{#if (equals type "phdthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
 
-                            {{#if (equals type "proceedings")}} {{joinToEnd ', ' BOOKTITLE EDITOR PUBLISHER ORGANIZATION ADDRESS (join '' MONTH ' ' YEAR) NOTE}} 
-                            {{/if}}
+                            {{#if (equals type "proceedings")}} {{joinToEnd ', ' BOOKTITLE EDITOR PUBLISHER ORGANIZATION ADDRESS (join '' MONTH ' ' YEAR) NOTE}} {{/if}}
 
-                            {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' '*Technical Report*') NUMBER INSTITUTION (join '' MONTH ' ' YEAR) TYPE ADDRESS NOTE  }}
-                            {{/if}}
+                            {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' '*Technical Report*') NUMBER INSTITUTION (join '' MONTH ' ' YEAR) TYPE ADDRESS NOTE  }}{{/if}}
 
-                            {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} 
-                            {{/if}}
+                            {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
                           
                             {{~#if URL}} &nbsp {{link 'URL1' URL}} {{/if}}
                             {{~#if BDSK-URL-1}} &nbsp {{link 'URL2' URL}} {{/if}}
