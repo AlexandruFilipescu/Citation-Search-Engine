@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
 
- var definitiveObjectArray;
+       var definitiveObjectArray;
        var objectArray;
        var textString, textArray;
        fetch('./output.json') //http://scg.unibe.ch/download/scgbib/json-conversion/scgbib.json
@@ -18,7 +18,7 @@ $(document).ready(function()
       {   
           return objectArray.filter(object => 
               searchTags.every(tag => Object.values(object)  // ACCOR02a","type": "techreport","AUTHOR": "Nierstrasz",
-              .some(value=> value.includes(tag)) //"Nierstrasz"
+              .some(value => value.includes(tag)) //"Nierstrasz"
               ));
 
       }
@@ -80,9 +80,10 @@ $(document).ready(function()
       {
           var inputValues = $('#searchForm').val();
           var selectedFilter = getSelectorValue();
+          let params = new URLSearchParams();
           if(inputValues)
           {
-            let params = new URLSearchParams();
+            
             params.set('query', inputValues);
             params.set('filter', selectedFilter);
       
